@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xftest="clr-namespace:FingerprintHack"
+             x:Class="FingerprintHack.MainPage">
+
+    <Grid RowDefinitions="6*, 4*">
+        <Image Grid.Row="0" x:Name="sourceFingerprint"/>
+        <StackLayout Orientation="Vertical" Grid.Row="1">
+            <Grid RowDefinitions="*, *" ColumnDefinitions="*, *, *, *">
+                <xftest:ImageBox Grid.Row="0" Grid.Column="0" x:Name="ib0" />
+                <xftest:ImageBox Grid.Row="0" Grid.Column="1" x:Name="ib1" />
+                <xftest:ImageBox Grid.Row="0" Grid.Column="2" x:Name="ib2" />
+                <xftest:ImageBox Grid.Row="0" Grid.Column="3" x:Name="ib3" />
+                <xftest:ImageBox Grid.Row="1" Grid.Column="0" x:Name="ib4" />
+                <xftest:ImageBox Grid.Row="1" Grid.Column="1" x:Name="ib5" />
+                <xftest:ImageBox Grid.Row="1" Grid.Column="2" x:Name="ib6" />
+                <xftest:ImageBox Grid.Row="1" Grid.Column="3" x:Name="ib7" />
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Validate" Clicked="Validate_Clicked"/>
+                <StackLayout x:Name="correct" Orientation="Horizontal" IsVisible="False">
+                    <Label FontSize="16">Correct</Label>
+                    <Button Text="Next" Clicked="Next_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
