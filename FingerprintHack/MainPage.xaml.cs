@@ -20,6 +20,7 @@ namespace FingerprintHack
             {
                 var ibo = FindByName($"ib{i}");
                 ImageBox imgBox = ibo as ImageBox;
+                imgBox.ImageClicked = () => { ValidLabel.IsVisible = false; };
                 imageBoxes[i] = imgBox;
             }
             setFingerprint(0);
@@ -28,9 +29,7 @@ namespace FingerprintHack
         public void setFingerprint(int f)
         {
             currentFingerprint = f;
-            var obj = FindByName("sourceFingerprint");
-            Image img = obj as Image;
-            img.Source = $"f{f}.PNG";
+            sourceFingerprint.Source = $"f{f}.PNG";
             List<int> indicesRemaining = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7 };
             List<int> indices = new List<int>();
             while (indicesRemaining.Any())
@@ -50,7 +49,6 @@ namespace FingerprintHack
 
         private void Validate_Clicked(object sender, EventArgs e)
         {
-            bool valid = true;
             List<int> required = new List<int>() { 0, 1, 2, 3 };
             for (int i = 0; i < 8; i++)
             {
@@ -58,30 +56,29 @@ namespace FingerprintHack
                 {
                     if (imageBoxes[i].getId() > 3)
                     {
-                        valid = false;
                         break;
                     }
-                    else
-                    {
-                        int id = imageBoxes[i].getId();
-                        required.Remove(id);
-                    }
+                    
+                    int id = imageBoxes[i].getId();
+                    required.Remove(id);
                 }
             }
             if (required.Any())
             {
-                valid = false;
+                ValidLabel.Text = "Wrong";
             }
-            var slo = FindByName("correct");
-            StackLayout sl = slo as StackLayout;
-            sl.IsVisible = valid;
-
+            else
+            {
+                ValidLabel.Text = "Correct";
+                NextButton.IsVisible = true;
+            }
+            ValidLabel.IsVisible = true;
         }
         private void Next_Clicked(object sender, EventArgs e)
         {
-            var slo = FindByName("correct");
-            StackLayout sl = slo as StackLayout;
-            sl.IsVisible = false;
+            ValidLabel.IsVisible = false;
+            NextButton.IsVisible = false;
+            
             for (int i = 0; i < 8; i++)
             {
                 imageBoxes[i].uncheck();

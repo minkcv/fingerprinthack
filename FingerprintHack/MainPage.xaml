@@ -18,9 +18,9 @@
             </Grid>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Validate" Clicked="Validate_Clicked"/>
-                <StackLayout x:Name="correct" Orientation="Horizontal" IsVisible="False">
-                    <Label FontSize="16">Correct</Label>
-                    <Button Text="Next" Clicked="Next_Clicked"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label FontSize="16" x:Name="ValidLabel"/>
+                    <Button Text="Next" Clicked="Next_Clicked" IsVisible="False" x:Name="NextButton"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
