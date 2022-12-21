@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using Xamarin.Forms;
 
 namespace FingerprintHack
 {
     public class ImageBox : ContentView
     {
+        /// <summary>
+        /// Action clients can subscribe to.
+        /// </summary>
+        public Action ImageClicked;
+        
         protected Image img;
         private bool Checked;
         private int id;
@@ -35,6 +37,9 @@ namespace FingerprintHack
 
         private void TapGestureOnTapped(object sender, EventArgs eventArgs)
         {
+            // Let any clients wanting to know that an image was clicked
+            ImageClicked?.Invoke();
+            
             if (IsEnabled)
             {
                 Checked = !Checked;
