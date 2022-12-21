@@ -24,7 +24,6 @@ namespace FingerprintHack
             };
             img.HeightRequest = 100;
             img.WidthRequest = 100;
-            img.Source = "p0_0.PNG";
             Padding = 5;
             Content = img;
         }
@@ -46,7 +45,7 @@ namespace FingerprintHack
             }
             else
             {
-                BackgroundColor = Color.White;
+                BackgroundColor = Color.Transparent;
             }
         }
         public bool isChecked()
@@ -56,7 +55,7 @@ namespace FingerprintHack
         public void uncheck()
         {
             Checked = false;
-            BackgroundColor = Color.White;
+            BackgroundColor = Color.Transparent;
         }
         public int getId()
         {
